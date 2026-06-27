@@ -1,5 +1,4 @@
 from flask import Flask, request
-import os
 
 app = Flask(__name__)
 
@@ -12,15 +11,21 @@ def home():
 @app.route("/callback")
 def callback():
 
-    auth_code = request.args.get("auth_code")
-
-    print("AUTH CODE RECEIVED:", auth_code)
+    print("FULL CALLBACK URL:", request.url)
+    print("ARGS:", request.args)
 
     return f"""
-    <h2>FYERS Login Successful</h2>
-    <p>Auth Code received:</p>
-    <p>{auth_code}</p>
-    <p>You can close this page.</p>
+    <h2>FYERS Callback Received</h2>
+
+    Full URL:
+    <br>
+    {request.url}
+
+    <br><br>
+
+    Parameters:
+    <br>
+    {request.args}
     """
 
 
